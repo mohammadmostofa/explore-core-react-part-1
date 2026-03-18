@@ -1,42 +1,56 @@
 import { Suspense } from 'react'
 import './App.css'
 import Batsman from './Batsman'
-import Counter from './Counter'
-import User from './User'
-import Friends from './Friends'
+//import Counter from './Counter'
+//import User from './User'
+//import Friends from './Friends'
+import Posts from './Posts'
 
-const fatchUser = fetch('https://jsonplaceholder.typicode.com/users')
-.then(res => res.json())
-.then(data => data);
+// const fatchUser = fetch('https://jsonplaceholder.typicode.com/users')
+// .then(res => res.json())
+// .then(data => data);
 
 // asyn process
 
-const fetchFriends = async () =>{
-         const res = await fetch('https://jsonplaceholder.typicode.com/users')
-         return res.json();
+// const fetchFriends = async () =>{
+//          const res = await fetch('https://jsonplaceholder.typicode.com/users')
+//          return res.json();
          
+// }
+
+
+// posts fetch out by asyn process
+
+const fetchPosts = async () =>{
+       const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+       return res.json();
 }
 
 function App() {
 
   // call the fetchfriends
-  const friendsPromise = fetchFriends();//call function fetchFriends();
+ //const friendsPromise = fetchFriends();//call function fetchFriends();
+  // call the fetchpost 
+  const postsPromise = fetchPosts();
 
   return (
     <>
-
+{/* 
     <Suspense fallback = { <h3>Loading...</h3> } >
       <User fatchUser = {fatchUser}>   </User>
-    </Suspense>
+    </Suspense> */}
 
+     {/* set the fetchfriends variable  in friend
     <Suspense fallback ={ <h3>Friends are coming soon...</h3>} >
-    {/* set the fetchfriends variable  in friend */}
     <Friends friendsPromise = {friendsPromise} ></Friends>
-   
+    </Suspense> */}
+
+    <Suspense fallback = { <h4>just waiting to post...</h4>} >
+        <Posts postsPromise ={postsPromise} ></Posts>
     </Suspense>
    
-<Batsman></Batsman>     
-<Counter></Counter>  
+{/* <Batsman></Batsman>     
+<Counter></Counter>   */}
      
     </>
   )
@@ -45,4 +59,4 @@ function App() {
 
 
 
-export default App
+export default App;
